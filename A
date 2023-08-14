@@ -1,0 +1,48 @@
+class AcademyExpenses:
+    def __init__(self):
+        self.expenses = {}  # Dictionary to store expenses
+
+    def add_expense(self, date, amount):
+        if date in self.expenses:
+            self.expenses[date] += amount
+        else:
+            self.expenses[date] = amount
+
+    def get_total_expenses(self):
+        return sum(self.expenses.values())
+
+    def get_expenses_by_date(self, date):
+        return self.expenses.get(date, 0)
+
+if __name__ == "__main__":
+    academy_finances = AcademyExpenses()
+
+    while True:
+        print("Options:")
+        print("1. Add Expense")
+        print("2. Get Total Expenses")
+        print("3. Get Expenses by Date")
+        print("4. Exit")
+        choice = int(input("Enter your choice: "))
+
+        if choice == 1:
+            date = input("Enter the date (YYYY-MM-DD): ")
+            amount = float(input("Enter the expense amount in PKR: "))
+            academy_finances.add_expense(date, amount)
+            print("Expense added successfully!")
+
+        elif choice == 2:
+            total_expenses = academy_finances.get_total_expenses()
+            print(f"Total Expenses: {total_expenses} PKR")
+
+        elif choice == 3:
+            date = input("Enter the date (YYYY-MM-DD): ")
+            expense = academy_finances.get_expenses_by_date(date)
+            print(f"Expenses on {date}: {expense} PKR")
+
+        elif choice == 4:
+            print("Exiting...")
+            break
+
+        else:
+            print("Invalid choice! Please select a valid option.")
